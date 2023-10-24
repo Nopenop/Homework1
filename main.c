@@ -30,6 +30,8 @@ int main(int argc, char *argv[]) {
         } 
 
         else {
+            int status;
+            wait(&status);
             close(pipe_fd[1]);
             int child_value;
             read(pipe_fd[0], &child_value, sizeof(child_value));
