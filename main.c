@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
     
 
     if (argc <2){
-        printf("There is no input from the user");
+        printf("There is no input from the user\n");
     }
 
     if (argc == 2) {
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
         pid_t child_pid = fork();
 
         if (child_pid == -1) {
-            printf("Fork failed");
+            printf("Fork failed\n");
             return 1;
         }
 
@@ -24,9 +24,10 @@ int main(int argc, char *argv[]) {
             char *endptr; // Used to check for conversion errors
             long int value = strtol(argv[1], &endptr, 10);
             int child_value = fib(value);
-            printf("Child give %d", child_value);
+            printf("Child give %d\n", child_value);
             write(pipe_fd[1], &child_value, sizeof(child_value));
             close(pipe_fd[1]);
+            return 0;
         } 
 
         else {
@@ -34,15 +35,16 @@ int main(int argc, char *argv[]) {
             int child_value;
             read(pipe_fd[0], &child_value, sizeof(child_value));
             close(pipe_fd[0]); // Close the read end of the pipe
-            printf("The fibbonacci number is %d", child_value);
+            printf("The fibbonacci number is %d\n", child_value);
+            return 0;
         }
     }
 
     else if (argc == 3){
-        printf("Too many");
+        printf("Too many\n");
     }
     else if (argc == 4){
-        printf("Too many");
+        printf("Too many\n");
     }
 
     return 0;
