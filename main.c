@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
     
@@ -32,10 +33,10 @@ int main(int argc, char *argv[]) {
         else {
             wait(NULL);
             close(pipe_fd[1]);
-            int child_value;
-            read(pipe_fd[0], &child_value, sizeof(child_value));
+            int new_val;
+            read(pipe_fd[0], &new_val, sizeof(child_value));
             close(pipe_fd[0]); // Close the read end of the pipe
-            printf("The fibbonacci number is %d\n", child_value);
+            printf("The fibbonacci number is %d\n", new_val);
             return 0;
         }
     }
