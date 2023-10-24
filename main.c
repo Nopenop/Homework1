@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {
         }
 
         else if (child_pid == 0) {
-            close(pipe_fd[0]);
             char *endptr; // Used to check for conversion errors
             long int value = strtol(argv[1], &endptr, 10);
             int child_value = fib(value);
