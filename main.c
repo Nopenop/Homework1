@@ -26,12 +26,11 @@ int main(int argc, char *argv[]) {
             printf("Child give %d\n", child_value);
             write(pipe_fd[1], &child_value, sizeof(child_value));
             close(pipe_fd[1]);
-            return 0;
+            exit(0);
         } 
 
         else {
-            int status;
-            wait(&status);
+            wait(NULL);
             close(pipe_fd[1]);
             int child_value;
             read(pipe_fd[0], &child_value, sizeof(child_value));
