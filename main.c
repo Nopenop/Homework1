@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
             char *endptr; // Used to check for conversion errors
             long int value = strtol(argv[1], &endptr, 10);
             int child_value = fib(value);
+            printf("Child give %d", child_value);
             write(pipe_fd[1], &child_value, sizeof(child_value));
             close(pipe_fd[1]);
         } 
