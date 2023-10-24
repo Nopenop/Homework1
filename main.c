@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
     
 
     if (argc <2){
-        printf("There is no input from the user")
+        printf("There is no input from the user");
     }
 
     if (argc == 2) {
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
             close(pipe_fd[0]);
             char *endptr; // Used to check for conversion errors
             long int value = strtol(argv[1], &endptr, 10);
-            int child_value = fib(int);
+            int child_value = fib(value);
             write(pipe_fd[1], &child_value, sizeof(child_value));
             close(pipe_fd[1]);
         } 
@@ -52,10 +52,12 @@ int fib(long int n) {
     int a = 0, b = 1;
     int result = 0;
     if (n == 0) return a;
-    for (int i = 2; i <= n; i++) {
+    int i = 2; 
+    while(i <= n) {
         result = a + b;
         a = b;
         b = result;
+        i++;
     }
     return b;
 }
