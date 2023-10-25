@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     if (argc == 2) {
         int pipe_fd[2];
         pid_t child_pid = fork();
-        int child_value = 0
+        int child_value = 0;
 
         if (pipe(pipe_fd) < 0) exit(1); // create and check for pipe in program
         if (child_pid == -1) {
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
             close(pipe_fd[0]); // Close the read end of the pipe
             close(pipe_fd[1]); // Close the write end of the pipe
             wait(&status);
-            printf("The fibbonacci number is %d\n", new_val);
+            printf("The fibbonacci number is %d\n", child_value);
             return 0;
         }
     }
