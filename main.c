@@ -33,7 +33,8 @@ int main(int argc, char *argv[]) {
 
         else {
             printf("start parent process\n");
-            wait(NULL);
+            int status;
+            wait(&status);
             int new_val;
             read(pipe_fd[0], &new_val, sizeof(new_val));
             close(pipe_fd[0]); // Close the read end of the pipe
